@@ -1,30 +1,30 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
-	"strconv"
+
+	"example.com/stb/fileutils"
 )
 
 const accountBalanceFile = "balance.txt"
 
-func getBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile(accountBalanceFile)
+// func getBalanceFromFile() (float64, error) {
+// 	data, err := os.ReadFile(accountBalanceFile)
 
-	if err != nil {
-		return 1000, errors.New("failed to find balance file")
-	}
+// 	if err != nil {
+// 		return 1000, errors.New("failed to find balance file")
+// 	}
 
-	balanceText := string(data)
-	balance, err := strconv.ParseFloat(balanceText, 64)
+// 	balanceText := string(data)
+// 	balance, err := strconv.ParseFloat(balanceText, 64)
 
-	if err != nil {
-		return 1000, errors.New("failed to parse stored balance value")
-	}
+// 	if err != nil {
+// 		return 1000, errors.New("failed to parse stored balance value")
+// 	}
 
-	return balance, nil
-}
+// 	return balance, nil
+// }
 
 func writeBalanceToFile(balance float64) {
 	balanceText := fmt.Sprint(balance)
@@ -32,7 +32,7 @@ func writeBalanceToFile(balance float64) {
 }
 
 func main() {
-	var accountBalance, err = getBalanceFromFile()
+	var accountBalance, err = fileutils.ReadFloatFromFile(accountBalanceFile)
 
 	if err != nil {
 		fmt.Println("ERROR")
