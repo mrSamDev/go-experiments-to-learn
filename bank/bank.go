@@ -2,34 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"example.com/stb/fileutils"
 )
 
 const accountBalanceFile = "balance.txt"
-
-// func getBalanceFromFile() (float64, error) {
-// 	data, err := os.ReadFile(accountBalanceFile)
-
-// 	if err != nil {
-// 		return 1000, errors.New("failed to find balance file")
-// 	}
-
-// 	balanceText := string(data)
-// 	balance, err := strconv.ParseFloat(balanceText, 64)
-
-// 	if err != nil {
-// 		return 1000, errors.New("failed to parse stored balance value")
-// 	}
-
-// 	return balance, nil
-// }
-
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
-}
 
 func main() {
 	var accountBalance, err = fileutils.ReadFloatFromFile(accountBalanceFile)
@@ -71,7 +48,7 @@ func main() {
 
 			accountBalance += depositAmount // accountBalance = accountBalance + depositAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileutils.WriteBalanceToFile(accountBalanceFile, accountBalance)
 		case 3:
 			fmt.Print("Withdrawal amount: ")
 			var withdrawalAmount float64
@@ -89,7 +66,7 @@ func main() {
 
 			accountBalance -= withdrawalAmount // accountBalance = accountBalance + depositAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileutils.WriteBalanceToFile(accountBalanceFile, accountBalance)
 		default:
 			fmt.Println("Goodbye!")
 			fmt.Println("Thanks for choosing our bank")
