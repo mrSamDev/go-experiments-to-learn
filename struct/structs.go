@@ -2,21 +2,38 @@ package main
 
 import (
 	"fmt"
+
+	"example.com/structs/person"
 )
 
 func main() {
-	firstName := getUserData("Please enter your first name: ")
-	lastName := getUserData("Please enter your last name: ")
-	birthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
+	p, error := person.New(getUserData("Please enter your first name: "), getUserData("Please enter your last name: "), getUserData("Please enter your birthdate (MM/DD/YYYY): "))
 
-	// ... do something awesome with that gathered data!
+	if error != nil {
+		fmt.Println(error)
+		return
+	}
 
-	fmt.Println(firstName, lastName, birthdate)
+	p.CapitalizeFirstName()
+	p.Show()
+
 }
 
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
+
+/*
+	just need to make the value is in order
+		p = person{
+			getUserData("Please enter your first name: "),
+			getUserData("Please enter your last name: "),
+			getUserData("Please enter your birthdate (MM/DD/YYYY): "),
+			time.Now(),
+		}
+
+		p = person{}
+*/
