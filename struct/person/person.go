@@ -15,8 +15,8 @@ type Person struct {
 }
 
 type Admin struct {
-	email  string
-	Person Person
+	email string
+	Person
 }
 
 func PromoteToAdmin(email string, p Person) Admin {
