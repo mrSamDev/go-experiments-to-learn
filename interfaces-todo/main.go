@@ -8,7 +8,8 @@ import (
 	"example.com/app/utils"
 )
 
-type saver interface {
+type ouputtable interface {
+	Display()
 	Save() error
 }
 
@@ -21,9 +22,7 @@ func main() {
 		fmt.Println(error)
 	}
 
-	newtodo.Display()
-
-	error = saveData(newtodo)
+	error = saveDataAndDisplay(newtodo)
 
 	if error != nil {
 		fmt.Println(error)
@@ -38,9 +37,7 @@ func main() {
 		fmt.Println(error)
 	}
 
-	newNote.Display()
-
-	error = saveData(newNote)
+	error = saveDataAndDisplay(newNote)
 
 	if error != nil {
 		fmt.Println(error)
@@ -48,7 +45,9 @@ func main() {
 
 }
 
-func saveData(data saver) error {
+func saveDataAndDisplay(data ouputtable) error {
+
+	data.Display()
 
 	error := data.Save()
 

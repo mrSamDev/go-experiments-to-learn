@@ -8,10 +8,7 @@ import (
 )
 
 func main() {
-	title, content, error := utils.ReadNote()
-	if error != nil {
-		fmt.Println(error)
-	}
+	title, content := utils.ReadNote()
 
 	newNote, error := note.New(title, content)
 
@@ -20,5 +17,14 @@ func main() {
 	}
 
 	newNote.Display()
+
+	error = newNote.Save()
+
+	if error != nil {
+		fmt.Println("Saving the nodte failed")
+		return
+	}
+
+	fmt.Println("Saving the note completed")
 
 }

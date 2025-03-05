@@ -1,25 +1,13 @@
 package utils
 
 import (
-	"fmt"
-
 	"example.com/app/input"
 )
 
-func ReadNote() (string, string, error) {
-	title, titleError := input.Read("Note title: ")
+func ReadNote() (string, string) {
+	title := input.Read("Note title: ")
 
-	if titleError != nil {
-		fmt.Println(titleError)
-		return "", "", titleError
-	}
+	content := input.Read("Note content: ")
 
-	content, contentError := input.Read("Note content: ")
-
-	if contentError != nil {
-		fmt.Println(contentError)
-		return "", "", contentError
-	}
-
-	return title, content, nil
+	return title, content
 }

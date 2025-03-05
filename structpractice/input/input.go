@@ -2,23 +2,30 @@ package input
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"os"
+	"strings"
 )
 
-// NumberInput is a function.
-func Read(prompt string) (string, error) {
+func Read(prompt string) string {
 	var input string
 	fmt.Print(prompt)
 
-	bufio.NewReader(os.Stdin).ReadString('\n')
-	if input == "" {
-		return "", errors.New("input is required")
+	reader := bufio.NewReader(os.Stdin)
+
+	input, err := reader.ReadString('\n')
+
+	if err != nil {
+		return ""
 	}
 
-	return input, nil
+	input = strings.TrimSuffix(input, "\n")
+	input = strings.TrimSuffix(input, "\r")
+
+	return input
 }
 
 // Output is a function.
-func Output(text string) {}
+func Output(text string) {
+	fmt.Print(text)
+}
