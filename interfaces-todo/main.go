@@ -13,7 +13,38 @@ type ouputtable interface {
 	Save() error
 }
 
+func printSomething(data any) {
+	//any types can be checked
+	typedValue, isTrue := data.(int)
+
+	if !isTrue {
+		fmt.Println("This is a string", typedValue)
+		return
+	}
+
+	switch data.(type) {
+	case int:
+		fmt.Println("This is an integer")
+	case string:
+		fmt.Println("This is a string")
+	case float64:
+		fmt.Println("This is a float")
+	case bool:
+		fmt.Println("This is a boolean")
+
+	}
+
+	fmt.Println(data)
+
+}
+
 func main() {
+
+	printSomething(1)
+	printSomething("string")
+	printSomething(1.0)
+	printSomething(true)
+
 	title := utils.ReadTodo()
 
 	newtodo, error := todo.New(title)
