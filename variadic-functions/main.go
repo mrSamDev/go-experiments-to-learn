@@ -11,6 +11,8 @@ func main() {
 	fmt.Println(anotherSum)
 }
 
+//number... will pull value from []int{} to standalone and standalone to []int{}
+
 func sumup(startingValue int, numbers ...int) int {
 	sum := 0
 
