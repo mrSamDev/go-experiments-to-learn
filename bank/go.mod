@@ -1,4 +1,4 @@
-module example.com/stb
+module github.com/mrSamDev/go-experiments-to-learn/bank
 
 
 
