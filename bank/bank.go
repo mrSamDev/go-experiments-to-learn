@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"example.com/stb/fileutils"
+	"github.com/mrSamDev/go-experiments-to-learn/bank/fileutils"
 )
 
 const accountBalanceFile = "balance.txt"
